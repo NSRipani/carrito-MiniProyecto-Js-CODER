@@ -18,6 +18,13 @@ const productos = JSON.parse(localStorage.getItem("productos")) || []
 let carrito = JSON.parse(localStorage.getItem("carrito")) || []
 const pedidos = JSON.parse(localStorage.getItem("pedidos")) || []
 
+const tarjeta = document.getElementsByClassName("")
+// function crearTarjetaDeProductos(productosTienda){
+//     productosTienda.forEach(element => {
+//         productos.a
+//     });
+// }
+
 const dropdownToggle = document.querySelector('.dropdown-toggle');
 const dropdownMenu = document.querySelector('.dropdown-menu');
 
