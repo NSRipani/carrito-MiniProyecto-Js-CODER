@@ -11,24 +11,58 @@
 .header-content .title p {
     font-size: 2rem;
 }
-.header-content .btn-menu .dropdown-toggle {
-    background-color: lightblue;
+.header-content .abrir-menu {
+    /* background-color: lightblue; */
     color: rgb(0, 0, 0);
-    padding: 10px 20px;
-    border: 0.2rem solid black;
-    border-radius: 1rem;
+    padding: 0.2rem;
     cursor: pointer;
-    font-weight: bold;
-    font-family: 'Courier New', Courier, monospace; 
+    font-size: 2.5rem;
+    font-weight: bold; 
 }
-.header-content .btn-menu .dropdown-toggle:hover {
+.header-content .abrir-menu:hover {
     background-color: rgb(0, 0, 0,0.2);
 }
 
-.header-content .btn-menu .dropdown-toggle:active {
-    background-color: yellow;
+.header-content .abrir-menu:active {
+    background-color: rgb(132, 132, 11);
 }
 
+.header-content #nav {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(81, 136, 180);
+    padding: 1rem;
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
+}
+
+.header-content .nav-visible{
+    visibility: visible;
+}
+
+.header-content .nav .cerrar-menu {
+    color: rgb(0, 0, 0);
+    border: none;
+    background-color: transparent;
+    padding: 0.2rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold; 
+}
+.header-content .nav .cerrar-menu:hover {
+    background-color: rgb(0, 0, 0,0.2);
+}
+
+.header-content .nav .cerrar-menu:active {
+    background-color: rgb(160, 160, 160);
+}
+
+.header-content .nav .list-prod {
+    flex-direction: column;
+    list-style-type: none;
+}
 /* .header-content .nav-conteiner .dropdown-menu{
     display: none;
     position: absolute;
