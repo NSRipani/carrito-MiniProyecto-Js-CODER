@@ -33,14 +33,14 @@
     top: 0;
     right: 0;
     bottom: 0;
-    background-color: rgb(81, 136, 180);
+    background-color: rgb(205, 205, 205);
     padding: 1rem;
     box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
 }
 
-.header-content .nav-visible{
+/* .header-content .nav-visible{
     visibility: visible;
-}
+} */
 
 .header-content .nav .cerrar-menu {
     color: rgb(0, 0, 0);
@@ -63,16 +63,6 @@
     flex-direction: column;
     list-style-type: none;
 }
-/* .header-content .nav-conteiner .dropdown-menu{
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 300px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    padding: 20px;
-} */
-
 .grid{
     grid-template-columns: repeat(3, 1fr);
     display: grid;
@@ -112,12 +102,31 @@
     width: auto;
 }
 .grid .product-card .product-details .product-price-actions .add-to-cart {
-    border-radius: 0.2rem;
-    background-color: orange;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: rgb(0, 190, 122);
     font-weight: bold;
+    color: #000000;
     font-size: 1rem;
     padding: 0.5rem;
+    transition: all 0.3s ease;
 }
 .grid .product-card .product-details .product-price-actions .add-to-cart:hover {
-    background-color: rgba(156, 143, 118, 0.494);
+    background-color: rgb(67, 224, 146);
+    color: #000000;
+}
+.grid .product-card .product-details .product-price-actions .add-to-cart:active {
+    color: #000000;
+    background-color: rgb(166, 237, 199);
+}
+
+.header-content .nav h3{
+    font-size: 2rem;
+}
+
+.header-content .nav #ico-card {
+    font-size: 1.5rem;
+}
+.header-content .nav p {
+    font-size: 1.5rem;
 }
