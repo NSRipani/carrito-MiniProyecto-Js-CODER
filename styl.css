@@ -3,10 +3,14 @@
     justify-content: space-between;
     padding: 0rem 4rem;
     align-items: center;
+    background-color: darkgoldenrod;
     border-bottom: 0.2rem solid black;
 }
-.header-content .logotipo{
-    background-color: transparent;
+
+.header-content .logotipo img{
+    
+    width: 8rem;
+    height: 5rem;
 }
 .header-content .title p {
     font-size: 2rem;
@@ -23,11 +27,16 @@
     font-weight: bold; 
 }
 .header-content #cart-count {
+    text-align: center;
     position: absolute;
-    top: 4.5rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    line-height: 13px;
+    top: 1.5rem;
+    right: 5.5rem;
+    font-size: 1.2rem;
+    line-height: 1rem;
+    padding: 0.15rem;
+    border-radius: 2rem;
+    color: #000000;
+    background-color: #ffffff;
 }
 
 .header-content .abrir-menu:active {
@@ -67,15 +76,13 @@
     color: #c82333;
 }
 
-.header-content .nav .list-prod {
-    flex-direction: column;
-    list-style-type: none;
-}
+
 .grid{
     grid-template-columns: repeat(3, 1fr);
     display: grid;
     padding: 4rem 10rem;
     gap: 2rem;
+    background-color: rgb(113, 129, 113);
     justify-content: center;
 }
 .grid .product-card{
