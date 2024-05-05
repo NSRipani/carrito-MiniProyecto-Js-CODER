@@ -11,20 +11,27 @@
 .header-content .title p {
     font-size: 2rem;
 }
+
 .header-content .abrir-menu {
-    /* background-color: lightblue; */
+    border: none;
+    background-color: transparent;
+    display: block;
     color: rgb(0, 0, 0);
-    padding: 0.2rem;
+    padding-top: 0.2rem;
     cursor: pointer;
     font-size: 2.5rem;
     font-weight: bold; 
 }
-.header-content .abrir-menu:hover {
-    background-color: rgb(0, 0, 0,0.2);
+.header-content #cart-count {
+    position: absolute;
+    top: 4.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 13px;
 }
 
 .header-content .abrir-menu:active {
-    background-color: rgb(132, 132, 11);
+    color: rgb(132, 132, 11);
 }
 
 .header-content #nav {
@@ -33,30 +40,31 @@
     top: 0;
     right: 0;
     bottom: 0;
-    background-color: rgb(205, 205, 205);
+    background-color: rgb(255, 254, 254);
     padding: 1rem;
     box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
 }
 
-/* .header-content .nav-visible{
+.header-content #nav {
     visibility: visible;
-} */
+}
 
 .header-content .nav .cerrar-menu {
-    color: rgb(0, 0, 0);
+    color: #dc3545;
     border: none;
     background-color: transparent;
-    padding: 0.2rem;
+    padding: 0rem;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 2rem;
     font-weight: bold; 
+    transition: color 0.3s ease;
 }
 .header-content .nav .cerrar-menu:hover {
-    background-color: rgb(0, 0, 0,0.2);
+    color: rgb(0, 0, 0,0.2);
 }
 
 .header-content .nav .cerrar-menu:active {
-    background-color: rgb(160, 160, 160);
+    color: #c82333;
 }
 
 .header-content .nav .list-prod {
@@ -109,7 +117,6 @@
     color: #000000;
     font-size: 1rem;
     padding: 0.5rem;
-    transition: all 0.3s ease;
 }
 .grid .product-card .product-details .product-price-actions .add-to-cart:hover {
     background-color: rgb(67, 224, 146);
@@ -129,4 +136,83 @@
 }
 .header-content .nav p {
     font-size: 1.5rem;
+}
+
+.header-content .nav .tabla-prod{
+    font-size: 1.2rem;
+    width: 100%;
+    max-width: 800px; /* Ajusta el ancho máximo según tus necesidades */
+    margin: 0 auto; /* Centrar el contenedor horizontalmente */
+    text-align: center;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+    
+.header-content .nav .tabla-prod thead {
+    width: 100%;
+    /* border-collapse: collapse; */
+    font-size: 14px;
+}
+    
+.header-content .nav .tabla-prod th {
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    text-align: left;
+    background-color: #ff0000;
+    font-weight: bold;
+    color:#ffffff;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.header-content .nav .tabla-prod td {
+    padding: 0.5rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.remove-from-cart {
+    background-color: #db4a07;
+    color: #fff; 
+    border: none; 
+    padding: 0.5rem; 
+    border-radius: 0.5rem; 
+    font-size: 1rem; 
+    font-weight: bold;
+    cursor: pointer; 
+    text-align: center;
+    justify-content: center;
+}
+.remove-from-cart:hover {
+    background-color: #c82333;
+}
+.remove-from-cart:active {
+    background-color: #c8233361;
+} 
+
+.header-content .nav .tabla-prod tr:last-child td {
+    border-bottom: none;
+}
+    
+.header-content .nav .tabla-prod tr:hover {
+    background-color: #dd592156;
+}
+      
+
+.header-content .nav #vaciar-carrito{   
+    margin-top: 2rem;
+    padding: 0.5rem;
+    font-size: bold;
+    font-size: 1rem;
+    background-color: #e62b3e;
+    color: white;
+    border-radius: 1rem;
+    border: 0.1rem solid #e62b3e;
+    width: 100%;
+}
+.header-content .nav #vaciar-carrito:hover{
+    background-color:  #db4f5d;
+}
+
+.header-content .nav #vaciar-carrito:active{
+    background-color: #f35b1f;
 }

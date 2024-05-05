@@ -15,14 +15,15 @@
         <div class="title">
             <p>Tienda de accesorios informáticos</p>
         </div>
-        <button id="carro" class="abrir-menu"><i class="bi bi-list"></i></button>
+        <div class="ico-card">
+            <button id="carro" class="abrir-menu"><i class="bi bi-cart3"></i></button>
+            <span class="utility-name transition-soft d-none  d-md-block">Mi carrito</span>
+            <span id="cart-count">0</span>
+        </div>
         <nav class="nav" id="nav">
-            <button class="cerrar-menu" id="close"><i class="bi bi-x-lg"></i></button>
+            <button class="cerrar-menu" id="close"><i class="bi bi-x-circle"></i> Cerrar panel</button>
             <h3>Productos de carrito</h3>
-            <div class="cart-info">
-                <p><i id="ico-card" class="bi bi-bag-fill"></i> Carrito: <span id="cart-count">0</span></p>
-            </div>
-            <table class="cart-table">
+            <table class="tabla-prod">
                 <thead>
                     <tr>
                         <th>Producto</th>
@@ -36,9 +37,9 @@
                     <!-- Los productos se agregarán aquí dinámicamente -->
                 </tbody>
             </table>
+            <button id="vaciar-carrito">VACIAR CARRITO</button>
         </nav>
     </header>
-    
     <main>
         <section class="grid">
             <div class="product-card">
@@ -82,8 +83,6 @@
             </div>
         </section>
     </main>
-        
-    
     <script src="./carrito.js"></script>
 </body>
 </html>

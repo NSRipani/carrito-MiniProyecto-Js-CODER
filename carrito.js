@@ -25,31 +25,31 @@ let products = JSON.parse(localStorage.getItem("cart")) || [];
 
 abrir.addEventListener("click", () => {
     nav.style.visibility = "visible";
-    updateCartDisplay();
+    actualizarDisplayCarro();
 });
 
 cerrar.addEventListener("click", () => {
     nav.style.visibility = "hidden";
 });
 
-function addToCart(product) {
+function agregarAlCarrito(product) {
     const existingProduct = products.find(p => p.id === product.id);
     if (existingProduct) {
         existingProduct.cantidad++;
     } else {
         products.push({ ...product, cantidad: 1 });
     }
-    updateCartDisplay();
-    saveCartToLocalStorage();
+    actualizarDisplayCarro();
+    guardarCarroEnLocalStorage();
 }
 
-function removeFromCart(index) {
+function eliminarDelCarrito(index) {
     products.splice(index, 1);
-    updateCartDisplay();
-    saveCartToLocalStorage();
+    actualizarDisplayCarro();
+    guardarCarroEnLocalStorage();
 }
 
-function updateCartDisplay() {
+function actualizarDisplayCarro() {
     cartItemsContainer.innerHTML = "";
     let total = 0;
     products.forEach((product, index) => {
@@ -59,16 +59,16 @@ function updateCartDisplay() {
             <td>${product.cantidad}</td>
             <td>$${product.precio.toFixed(2)}</td>
             <td>$${(product.precio * product.cantidad).toFixed(2)}</td>
-            <td><button class="remove-from-cart" data-index="${index}">Eliminar</button></td>
+            <td><button class="remove-from-cart" data-index="${index}">X</button></td>
         `;
         cartItemsContainer.appendChild(row);
         total += product.precio * product.cantidad;
     });
     cartCount.textContent = products.length;
-    updateTotal(total);
+    actualizarTotal(total);
 }
 
-function updateTotal(total) {
+function actualizarTotal(total) {
     const totalElement = document.createElement("tr");
     totalElement.innerHTML = `
         <td colspan="3"><strong>Total:</strong></td>
@@ -78,7 +78,7 @@ function updateTotal(total) {
     cartItemsContainer.appendChild(totalElement);
 }
 
-function saveCartToLocalStorage() {
+function guardarCarroEnLocalStorage() {
     localStorage.setItem("cart", JSON.stringify(products));
 }
 
@@ -88,7 +88,7 @@ addToCartButtons.forEach((button) => {
     button.addEventListener("click", () => {
         const product = productosTienda.find(p => p.nombre === button.closest(".product-card").querySelector(".product-title").textContent);
         if (product) {
-            addToCart(product);
+            agregarAlCarrito(product);
         }
     });
 });
@@ -97,66 +97,26 @@ addToCartButtons.forEach((button) => {
 cartItemsContainer.addEventListener("click", (event) => {
     if (event.target.classList.contains("remove-from-cart")) {
         const index = parseInt(event.target.dataset.index);
-        removeFromCart(index);
+        eliminarDelCarrito(index);
     }
 });
 
-// Cargar el carrito desde el LocalStorage al iniciar
-updateCartDisplay();
+const clearCartButton = document.getElementById('vaciar-carrito');
+
+clearCartButton.addEventListener('click', () => {
+    clearCart();
+});
+
+function clearCart() {
+    // Eliminar todos los productos del carrito
+    products = [];
+
+    // Actualizar el display del carrito
+    actualizarDisplayCarro();
+
+    // Guardar el carrito vacío en el localStorage
+    guardarCarroEnLocalStorage();
+}
 
 
-// class Prodcuto {
-//     constructor (id, nombre, precio, categoria, stock){
-//         this.id;
-//         this.nombre;
-//         this.precio;
-//         this.categoria;
-//         this.stock;
-//     };
-// }
-
-// const productosTienda = [
-//     {id: 1, nombre: "Auricular", precio: 5000, categoria: "Electrónica", stock: 25},
-//     {id: 2, nombre: "Pendrive", precio: 2500, categoria: "Electrónica", stock: 10},
-//     {id: 3, nombre: "Mouse", precio: 1500, categoria: "Electrónica", stock: 50}
-//     ];
-
-// // const productos = JSON.parse(localStorage.getItem("productos")) || [] 
-// // let carrito = JSON.parse(localStorage.getItem("carrito")) || []
-// // const pedidos = JSON.parse(localStorage.getItem("pedidos")) || []
-
-// const nav = document.querySelector("#nav");
-// const abrir = document.querySelector("#carro");
-// const cerrar = document.querySelector("#close");
-// const cartCount = document.querySelector("#cart-count");
-
-// // Variable para guardar productos
-// let products = 0;
-
-// abrir.addEventListener("click", () => {
-//     nav.style.visibility = "visible";
-// });
-// cerrar.addEventListener("click", () => {
-//     nav.style.visibility = "hidden";
-// });
-
-// function addToCart() {
-//     products++;
-//     updateCartCount();
-// }
-
-// function updateCartCount() {
-//     cartCount.textContent = products;
-// }
-
-// // Agrega un evento de clic a cada botón "Agregar al carrito"
-// const addToCartButtons = document.querySelectorAll(".add-to-cart");
-// addToCartButtons.forEach((button) => {
-//     button.addEventListener("click", addToCart);
-// });
-// const dropdownToggle = document.querySelector('.dropdown-toggle');
-// const dropdownMenu = document.querySelector('.dropdown-menu');
-
-// dropdownToggle.addEventListener('click', () => {
-//     dropdownMenu.classList.toggle('show');
-// });
+actualizarDisplayCarro();
