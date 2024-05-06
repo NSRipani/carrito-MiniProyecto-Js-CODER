@@ -21,7 +21,7 @@ const cartCount = document.querySelector("#cart-count");
 const cartItemsContainer = document.querySelector("#cart-items");
 
 // LocalStorage
-let products = JSON.parse(localStorage.getItem("cart")) || [];
+let products = JSON.parse(localStorage.getItem("cart")).value || [];
 
 abrir.addEventListener("click", () => {
     nav.style.visibility = "visible";
@@ -117,7 +117,7 @@ function actualizarTotal(total) {
     `;
     cartItemsContainer.appendChild(totalElement);
 }
-{/* <td></td> */}
+
 function guardarCarroEnLocalStorage() {
     localStorage.setItem("cart", JSON.stringify(products));
 }
