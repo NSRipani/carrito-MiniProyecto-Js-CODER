@@ -90,7 +90,8 @@
     border: 0.1rem solid black;
     border-radius: 0.6rem;
     padding: 1rem 2rem;
-    justify-content: space-between;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
     box-shadow: 0.3rem 0.3rem 0.3rem 0.3rem rgba(0, 0, 0, 0.2);
 }
 
@@ -100,7 +101,7 @@
     align-items: center;
     width: auto;
     height: auto;
-    border: 0.1rem solid rgba(200, 203, 204, 0.418);
+    border: 0.1rem solid rgb(200, 203, 204);
     border-radius: 0.4rem;
     padding: 0.2rem;
 }
@@ -111,10 +112,15 @@
 .grid .product-card .product-image{
     margin-bottom: 0.5rem;
     text-align: center;
+    justify-content: center;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
+
 .grid .product-card .product-image img {
-    width: auto;
+    border: 0.1rem solid rgba(5, 5, 5, 0.418);
+    text-align: center;
+    justify-content: center;
+    width: 100%;
 }
 .grid .product-card .product-details .product-price-actions .add-to-cart {
     border-radius: 0.5rem;
@@ -147,9 +153,6 @@
 
 .header-content .nav .tabla-prod{
     font-size: 1.2rem;
-    width: 100%;
-    max-width: 800px; /* Ajusta el ancho máximo según tus necesidades */
-    margin: 0 auto; /* Centrar el contenedor horizontalmente */
     text-align: center;
     border-radius: 1rem;
     overflow: hidden;
@@ -157,7 +160,6 @@
     
 .header-content .nav .tabla-prod thead {
     width: 100%;
-    /* border-collapse: collapse; */
     font-size: 14px;
 }
     
@@ -176,17 +178,32 @@
     text-align: left;
     border-bottom: 1px solid #f1f1f1;
 }
-
-.remove-from-cart {
+.header-content .nav .tabla-prod #cart-items .increment-qty,
+.header-content .nav .tabla-prod #cart-items .decrement-qty{
+    background-color: transparent;
+    border: 1px solid #ccc;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.header-content .nav .tabla-prod #cart-items .increment-qty:hover,
+.header-content .nav .tabla-prod #cart-items .decrement-qty:hover{
+    background-color: #e6e6e6;
+}
+.header-content .nav .tabla-prod #cart-items .increment-qty:active,
+.header-content .nav .tabla-prod #cart-items .decrement-qty:active{
+    background-color: #d9d9d9;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1)
+}
+.header-content .nav .tabla-prod #cart-items .remove-from-cart {
     background-color: #db4a07;
     color: #fff; 
     border: none; 
-    padding: 0.5rem; 
+    padding: 0.3rem 0.5rem; 
     border-radius: 0.5rem; 
-    font-size: 1rem; 
-    font-weight: bold;
+    font-size: 1rem;
     cursor: pointer; 
-    text-align: center;
+    align-items: center;
     justify-content: center;
 }
 .remove-from-cart:hover {
@@ -222,4 +239,68 @@
 
 .header-content .nav #vaciar-carrito:active{
     background-color: #f35b1f;
+}
+
+.header-content .nav .form { 
+    margin: 3rem;
+    border-radius: 5px;
+}
+.header-content .nav .form #label-nom { 
+    font-size: 1.2rem;
+    display: block; 
+    margin: 0.5rem 0 0.3rem 0; 
+    font-weight: bold; 
+}
+.header-content .nav .form #nombre[type="text"] { 
+    width: 100%; 
+    padding: 0.5rem; 
+    border: 0.1rem solid #a5a4a4; 
+    border-radius: 1rem; 
+    box-sizing: border-box;
+}
+.header-content .nav .form #nombre[type="text"]:hover {
+    background-color: #a5a4a42f;
+}
+.header-content .nav .form #nombre[type="text"]:focus{
+    border-color: 0.1rem solid #000000;
+}
+.header-content .nav .form #label-apel { 
+    font-size: 1.2rem;
+    display: block; 
+    margin: 0.5rem 0 0.3rem 0;  
+    font-weight: bold; 
+}
+.header-content .nav .form #apellido[type="text"] { 
+    width: 100%; 
+    padding: 0.5rem; 
+    border: 0.1rem solid #a5a4a4; 
+    border-radius: 1rem; 
+    box-sizing: border-box;
+}
+.header-content .nav .form #apellido[type="text"]:hover {
+    background-color: #a5a4a42f;
+}
+.header-content .nav .form #apellido[type="text"]:focus{
+    border-color: 0.1rem solid #000000;
+}
+.header-content .nav .form #btn-compra[type="submit"] { 
+    background-color: #ffffff; 
+    color: #4CAF50; 
+    padding: 10px 20px; 
+    border: 0.2rem solid #4CAF50; 
+    border-radius: 1.5rem; 
+    cursor: pointer; 
+    font-size: 1rem;
+    font-weight: bold;
+    width: 100%; 
+    margin-top: 1rem;
+} 
+.header-content .nav .form #btn-compra[type="submit"]:hover{ 
+    background-color: #4CAF50;
+    color: #ffffff; 
+    transition: background-color 0.5s ease;
+}
+.header-content .nav .form #btn-compra[type="submit"]:active{ 
+    background-color: #319a34;
+    color: #ffffff; 
 }

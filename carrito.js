@@ -56,7 +56,11 @@ function actualizarDisplayCarro() {
         const row = document.createElement("tr");
         row.innerHTML = `
             <td>${product.nombre}</td>
-            <td>${product.cantidad}</td>
+            <td>
+                <button class="decrement-qty" data-index="${index}"> - </button>
+                <span class="qty">${product.cantidad}</span>
+                <button class="increment-qty" data-index="${index}"> + </button>
+            </td>
             <td>$${product.precio.toFixed(2)}</td>
             <td>$${(product.precio * product.cantidad).toFixed(2)}</td>
             <td><button class="remove-from-cart" data-index="${index}">X</button></td>
@@ -66,18 +70,54 @@ function actualizarDisplayCarro() {
     });
     cartCount.textContent = products.length;
     actualizarTotal(total);
+
+    // Agrega eventos de clic a los botones de incremento y decremento
+    const decrementQtyButtons = document.querySelectorAll(".decrement-qty");
+    const incrementQtyButtons = document.querySelectorAll(".increment-qty");
+
+    decrementQtyButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const index = parseInt(button.dataset.index);
+            decrementarCantidad(index);
+        });
+    });
+
+    incrementQtyButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const index = parseInt(button.dataset.index);
+            incrementarCantidad(index);
+        });
+    });
+
 }
+
+function decrementarCantidad(index) {
+    const product = products[index];
+    if (product.cantidad > 1) {
+        product.cantidad--;
+        actualizarDisplayCarro();
+        guardarCarroEnLocalStorage();
+    }
+}
+
+function incrementarCantidad(index) {
+    const product = products[index];
+    product.cantidad++;
+    actualizarDisplayCarro();
+    guardarCarroEnLocalStorage();
+}
+
 
 function actualizarTotal(total) {
     const totalElement = document.createElement("tr");
     totalElement.innerHTML = `
         <td colspan="3"><strong>Total:</strong></td>
-        <td>$${total.toFixed(2)}</td>
-        <td></td>
+        <td colspan="5">$${total.toFixed(2)}</td>
+        
     `;
     cartItemsContainer.appendChild(totalElement);
 }
-
+{/* <td></td> */}
 function guardarCarroEnLocalStorage() {
     localStorage.setItem("cart", JSON.stringify(products));
 }
@@ -118,5 +158,30 @@ function clearCart() {
     guardarCarroEnLocalStorage();
 }
 
-
 actualizarDisplayCarro();
+
+// Seleccionar el formulario
+const form = document.querySelector(".form");
+
+// Agregar el evento de envío del formulario
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    // Obtener los valores de los campos del formulario
+    const name = document.querySelector("#nombre").value;
+    const surname = document.querySelector("#apellido").value;
+
+    // Guardar los datos del formulario en el localStorage
+    localStorage.setItem("formData", JSON.stringify({ name, surname }));
+
+    // Guardar los datos del carrito en el localStorage
+    guardarCarroEnLocalStorage();
+
+    // Limpiar los campos del formulario
+    form.reset();
+
+    clearCart();
+});
+
+
+    
