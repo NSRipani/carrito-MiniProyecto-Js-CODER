@@ -179,8 +179,6 @@ form.addEventListener("submit", (event) => {
 
     // Limpiar los campos del formulario
     form.reset();
-
-    clearCart();
 });
 
 
