@@ -21,7 +21,7 @@ const cartCount = document.querySelector("#cart-count");
 const cartItemsContainer = document.querySelector("#cart-items");
 
 // LocalStorage
-let products = JSON.parse(localStorage.getItem("cart")).value || [];
+let products = JSON.parse(localStorage.getItem("cart")) || [];
 
 abrir.addEventListener("click", () => {
     nav.style.visibility = "visible";
