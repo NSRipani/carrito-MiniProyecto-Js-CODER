@@ -1,19 +1,4 @@
-class Producto {
-    constructor(id, nombre, precio, categoria, stock) {
-        this.id = id;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.categoria = categoria;
-        this.stock = stock;
-    }
-}
-
-const productosTienda = [
-    new Producto(1, "Auricular", 5000, "Electrónica", 25),
-    new Producto(2, "Pendrive", 2500, "Electrónica", 10),
-    new Producto(3, "Mouse", 1500, "Electrónica", 50)
-];
-
+// Seleccion de 'IDs'
 const nav = document.querySelector("#nav");
 const abrir = document.querySelector("#carro");
 const cerrar = document.querySelector("#close");
@@ -23,6 +8,7 @@ const cartItemsContainer = document.querySelector("#cart-items");
 // LocalStorage
 let products = JSON.parse(localStorage.getItem("cart")) || [];
 
+// Eventos para que el panel del carrito sea visible y sea ocultado
 abrir.addEventListener("click", () => {
     nav.style.visibility = "visible";
     actualizarDisplayCarro();
@@ -32,6 +18,7 @@ cerrar.addEventListener("click", () => {
     nav.style.visibility = "hidden";
 });
 
+// Funcion de agregado de productos al carrito
 function agregarAlCarrito(product) {
     const existingProduct = products.find(p => p.id === product.id);
     if (existingProduct) {
@@ -39,31 +26,29 @@ function agregarAlCarrito(product) {
     } else {
         products.push({ ...product, cantidad: 1 });
     }
+
+    // Mensaje de agregado de productos al carrito
     Swal.fire({
-        title: "Compra",
-        text: "Agregaste un producto al carrito",
+        title: "Producto agregado al carrito",
         icon: "success",
         confirmButtonText: 'Confimado',
-        cursor: 'point'
+        cursor: 'point',
+        timer: 1500,
+        background: 'linear-gradient(to bottom, #f6f8f9 0%,#e5ebee 50%,#d7dee3 73%,#f5f7f9 100%)'
       });
 
     actualizarDisplayCarro();
     guardarCarroEnLocalStorage();
 }
 
+// Eliminacion de carrito, llamado de funcion actuaclizacion y guardado del LoLocalStorage
 function eliminarDelCarrito(index) {
     products.splice(index, 1);
-    Swal.fire({
-        title: "Compra",
-        text: "Eliminaste un producto del carrito",
-        icon: "success",
-        confirmButtonText: 'Confimado',
-        cursor: 'point'
-      });
     actualizarDisplayCarro();
     guardarCarroEnLocalStorage();
 }
 
+// Visualizacion del carrito
 function actualizarDisplayCarro() {
     cartItemsContainer.innerHTML = "";
     let total = 0;
@@ -106,6 +91,7 @@ function actualizarDisplayCarro() {
 
 }
 
+// Funcion de discminucion de cantidad de productos
 function decrementarCantidad(index) {
     const product = products[index];
     if (product.cantidad > 1) {
@@ -115,6 +101,7 @@ function decrementarCantidad(index) {
     }
 }
 
+// Funcion de aumento de cantidad de productos
 function incrementarCantidad(index) {
     const product = products[index];
     product.cantidad++;
@@ -122,7 +109,7 @@ function incrementarCantidad(index) {
     guardarCarroEnLocalStorage();
 }
 
-
+// Funcion para de cantidad de productos
 function actualizarTotal(total) {
     const totalElement = document.createElement("tr");
     totalElement.innerHTML = `
@@ -133,44 +120,46 @@ function actualizarTotal(total) {
     cartItemsContainer.appendChild(totalElement);
 }
 
+// Funcion de guardado de productos en LocalStorage
 function guardarCarroEnLocalStorage() {
     localStorage.setItem("cart", JSON.stringify(products));
 }
 
-// Agrega un evento de clic a cada botón "Agregar al carrito"
-// const addToCartButtons = document.querySelectorAll(".add-to-cart");
-// addToCartButtons.forEach((button) => {
-//     button.addEventListener("click", () => {
-//         const product = productosTienda.find(p => p.nombre === button.closest(".product-card").querySelector(".product-title").textContent);
-//         if (product) {
-//             agregarAlCarrito(product);
-//         }
-//     });
-// });
-
 // Carga los productos desde el archivo "data.json"
-fetch("productos/data.json")
-    .then(response => response.json())
-    .then(data => {
+async function loadProducts() {
+    try {
+        const response = await fetch("productos/data.json");
+        const data = await response.json();
+
         // Agregar los botones "Agregar al carrito" a cada producto
         const productCards = document.querySelectorAll(".product-card");
         productCards.forEach(card => {
-            const productName = card.querySelector(".product-title").textContent;
-            const product = data.find(p => p.nombre === productName);
-            if (product) {
-                const addToCartButton = document.createElement("button");
-                addToCartButton.classList.add("add-to-cart");
-                addToCartButton.textContent = "Agregar al carrito";
-                addToCartButton.addEventListener("click", () => {
-                    agregarAlCarrito(product);
-                });
-                card.appendChild(addToCartButton);
-            }
+        const productName = card.querySelector(".product-title").textContent;
+        const product = data.find(p => p.nombre === productName);
+        if (product) {
+            const addToCartButton = document.createElement("button");
+            addToCartButton.classList.add("add-to-cart");
+            addToCartButton.textContent = "Agregar al carrito";
+            addToCartButton.addEventListener("click", () => {
+            agregarAlCarrito(product);
+            });
+            card.appendChild(addToCartButton);
+        }
         });
-    })
-    .catch(error => {
+    } catch (error) {
+        Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: `Error al cargar los productos`,
+        showConfirmButton: false,
+        timer: 1500,
+        background: 'linear-gradient(to bottom, #f6f8f9 0%,#e5ebee 50%,#d7dee3 73%,#f5f7f9 100%)'
+        });
         console.error('Error al cargar los productos:', error);
-    });
+    }
+}
+
+loadProducts();
 
 // Agrega un evento de clic a cada botón "Eliminar" en el carrito
 cartItemsContainer.addEventListener("click", (event) => {
@@ -182,6 +171,7 @@ cartItemsContainer.addEventListener("click", (event) => {
 
 const clearCartButton = document.getElementById('vaciar-carrito');
 
+// Evento de vaciado del carrito
 clearCartButton.addEventListener('click', () => {
     clearCart();
 });
@@ -190,12 +180,13 @@ function clearCart() {
     // Eliminar todos los productos del carrito
     products = [];
 
+    // Mensaje para cuado el carrito es vaciado
     Swal.fire({
-        title: "Compra",
-        text: "Vaciaste el carrito",
+        title: "Vaciaste el carrito",
         icon: "success",
         confirmButtonText: 'Confimado',
-        cursor: 'point'
+        cursor: 'point',
+        background: 'linear-gradient(to bottom, #f6f8f9 0%,#e5ebee 50%,#d7dee3 73%,#f5f7f9 100%)'
       });
     // Actualizar el display del carrito
     actualizarDisplayCarro();
@@ -226,6 +217,18 @@ form.addEventListener("submit", (event) => {
 
     // Limpiar los campos del formulario
     form.reset();
+    
+    // Limpiar los campos del Carrito
+    clearCart();
+
+    // Mensaje de Finalización de compra
+    Swal.fire({
+        title: "Gracias por su compra",
+        icon: "success",
+        confirmButtonText: 'Confimado',
+        cursor: 'point',
+        background: 'linear-gradient(to bottom, #f6f8f9 0%,#e5ebee 50%,#d7dee3 73%,#f5f7f9 100%)'
+      });
 });
 
     

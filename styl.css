@@ -231,6 +231,7 @@
     border-radius: 1rem;
     border: 0.1rem solid #e62b3e;
     width: 100%;
+    cursor: pointer;
 }
 .header-content .nav #vaciar-carrito:hover{
     background-color:  #db4f5d;
