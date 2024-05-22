@@ -33,7 +33,8 @@ function agregarAlCarrito(product) {
         icon: "success",
         title: "Producto agregado al carrito",
         showConfirmButton: false,
-        timer: 1500
+        timer: 1500,
+        background: 'linear-gradient(to bottom, #f5f6f6 0%,#f5f6f6 7%,#f5f6f6 7%,#dbdce2 79%,#dbdce2 95%,#dbdce2 95%,#b8bac6 100%,#dddfe3 100%,#b8bac6 101%)'
         });
 
     actualizarDisplayCarro();
@@ -178,7 +179,8 @@ function clearCart() {
         icon: "success",
         title: "Vaciaste el carrito",
         showConfirmButton: false,
-        timer: 1500
+        timer: 1500,
+        background: 'linear-gradient(to bottom, #f5f6f6 0%,#f5f6f6 7%,#f5f6f6 7%,#dbdce2 79%,#dbdce2 95%,#dbdce2 95%,#b8bac6 100%,#dddfe3 100%,#b8bac6 101%)'
         });
 
     // Actualizar el display del carrito
@@ -220,7 +222,7 @@ form.addEventListener("submit", (event) => {
         icon: "success",
         confirmButtonText: 'Confimado',
         cursor: 'point',
-        background: 'linear-gradient(to bottom, #f6f8f9 0%,#e5ebee 50%,#d7dee3 73%,#f5f7f9 100%)'
+        background: 'linear-gradient(to bottom, #f5f6f6 0%,#f5f6f6 7%,#f5f6f6 7%,#dbdce2 79%,#dbdce2 95%,#dbdce2 95%,#b8bac6 100%,#dddfe3 100%,#b8bac6 101%)'
       });
 });
 
