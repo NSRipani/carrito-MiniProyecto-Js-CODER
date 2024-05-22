@@ -29,13 +29,12 @@ function agregarAlCarrito(product) {
 
     // Mensaje de agregado de productos al carrito
     Swal.fire({
-        title: "Producto agregado al carrito",
+        position: "top-end",
         icon: "success",
-        confirmButtonText: 'Confimado',
-        cursor: 'point',
-        timer: 1500,
-        background: 'linear-gradient(to bottom, #f6f8f9 0%,#e5ebee 50%,#d7dee3 73%,#f5f7f9 100%)'
-      });
+        title: "Producto agregado al carrito",
+        showConfirmButton: false,
+        timer: 1500
+        });
 
     actualizarDisplayCarro();
     guardarCarroEnLocalStorage();
@@ -144,17 +143,10 @@ async function loadProducts() {
             agregarAlCarrito(product);
             });
             card.appendChild(addToCartButton);
-        }
+            
+            }
         });
     } catch (error) {
-        Swal.fire({
-        position: "top-end",
-        icon: "error",
-        title: `Error al cargar los productos`,
-        showConfirmButton: false,
-        timer: 1500,
-        background: 'linear-gradient(to bottom, #f6f8f9 0%,#e5ebee 50%,#d7dee3 73%,#f5f7f9 100%)'
-        });
         console.error('Error al cargar los productos:', error);
     }
 }
@@ -182,12 +174,13 @@ function clearCart() {
 
     // Mensaje para cuado el carrito es vaciado
     Swal.fire({
-        title: "Vaciaste el carrito",
+        position: "top-end",
         icon: "success",
-        confirmButtonText: 'Confimado',
-        cursor: 'point',
-        background: 'linear-gradient(to bottom, #f6f8f9 0%,#e5ebee 50%,#d7dee3 73%,#f5f7f9 100%)'
-      });
+        title: "Vaciaste el carrito",
+        showConfirmButton: false,
+        timer: 1500
+        });
+
     // Actualizar el display del carrito
     actualizarDisplayCarro();
 
