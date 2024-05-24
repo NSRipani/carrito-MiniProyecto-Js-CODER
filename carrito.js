@@ -4,6 +4,7 @@ const abrir = document.querySelector("#carro");
 const cerrar = document.querySelector("#close");
 const cartCount = document.querySelector("#cart-count");
 const cartItemsContainer = document.querySelector("#cart-items");
+const izq_panel = document.querySelector("#izq-panel");
 
 // LocalStorage
 let products = JSON.parse(localStorage.getItem("cart")) || [];
@@ -11,11 +12,13 @@ let products = JSON.parse(localStorage.getItem("cart")) || [];
 // Eventos para que el panel del carrito sea visible y sea ocultado
 abrir.addEventListener("click", () => {
     nav.style.visibility = "visible";
+    izq_panel.style.visibility = "visible";
     actualizarDisplayCarro();
 });
 
 cerrar.addEventListener("click", () => {
     nav.style.visibility = "hidden";
+    izq_panel.style.visibility = "hidden";
 });
 
 // Funcion de agregado de productos al carrito
@@ -126,7 +129,7 @@ function guardarCarroEnLocalStorage() {
 }
 
 // Carga los productos desde el archivo "data.json"
-async function loadProducts() {
+async function cargarProductos() {
     try {
         const response = await fetch("productos/data.json");
         const data = await response.json();
@@ -152,7 +155,7 @@ async function loadProducts() {
     }
 }
 
-loadProducts();
+cargarProductos();
 
 // Agrega un evento de clic a cada botón "Eliminar" en el carrito
 cartItemsContainer.addEventListener("click", (event) => {

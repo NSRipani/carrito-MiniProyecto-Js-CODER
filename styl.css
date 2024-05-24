@@ -52,6 +52,7 @@
     background-color: rgb(255, 254, 254);
     padding: 1rem;
     box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
+    z-index: 20;
 }
 
 
@@ -72,7 +73,16 @@
 .header-content .nav .cerrar-menu:active {
     color: #c82333;
 }
-
+.bloqueo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    z-index: 10;
+}
 
 .grid{
     grid-template-columns: repeat(3, 1fr);

@@ -8,6 +8,7 @@
     <title>E-commerce - Infomática</title>
 </head>
 <body>
+    <!-- Encabezado con su logotipo, titulo y botón del carrito -->
     <header class="header-content">
         <div class="logotipo">
             <img src="asset/logo.png" alt="logotipo">
@@ -21,8 +22,12 @@
             <span id="cart-count">0</span>
         </div>
         <nav class="nav" id="nav">
+            
+            <!-- Botón para el cierre del panel del carrito -->
             <button class="cerrar-menu" id="close"><i class="bi bi-x-circle"></i> Cerrar panel</button>
             <h3>Productos de carrito</h3>
+
+            <!-- tabla para mostrar los productos agregado al carrito -->
             <table class="tabla-prod">
                 <thead>
                     <tr>
@@ -38,6 +43,8 @@
                 </tbody>
             </table>
             <button id="vaciar-carrito">VACIAR CARRITO</button>
+            
+            <!-- Formulario para el 'comprador' -->
             <form class="form"> 
                 <label id="label-nom" for="nombre">Nombre:</label> 
                 <input type="text" id="nombre" name="nombre" required>
@@ -47,7 +54,12 @@
             </form>
         </nav>
     </header>
+
+    <!-- Bloqueo de la zona izquierda del panel del carrito-->
+    <div class="bloqueo" id="izq-panel"></div>
     <main>
+        
+        <!-- Grilla que se muestran las tarjetas de productos-->
         <section class="grid">
             <div class="product-card">
                 <div class="product-image">
@@ -58,7 +70,6 @@
                     <p class="product-description">Diseño para un ajuste cómodo y duradero.</p>
                     <div class="product-price-actions">
                         <p class="product-price">$ 5000</p>
-                        <!-- <button class="add-to-cart">Agregar al carrito</button> -->
                     </div>
                 </div>
             </div>
@@ -71,7 +82,6 @@
                     <p class="product-description">Capacidad de 8GB.</p>
                     <div class="product-price-actions">
                         <p class="product-price">$ 2500</p>
-                        <!-- <button class="add-to-cart">Agregar al carrito</button> -->
                     </div>
                 </div>
             </div>
@@ -84,7 +94,6 @@
                     <p class="product-description">Mouse con bluetooth</p>
                     <div class="product-price-actions">
                         <p class="product-price">$ 1500</p>
-                        <!-- <button class="add-to-cart">Agregar al carrito</button> -->
                     </div>
                 </div>
             </div>
